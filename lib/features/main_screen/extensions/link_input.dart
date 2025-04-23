@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../models/model.dart';
 
 extension LinkInputError on LinkInput {
-  String? errorL10n(BuildContext context) {
+  String? errorMessage(BuildContext context) {
     if (isValid || isPure) {
       return null;
     } else {
