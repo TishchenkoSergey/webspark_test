@@ -1,14 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:webspark_test/app/app.dart';
+import 'package:webspark_test/bootstrap.dart';
 
 void main() {
-  runApp(const WebsparkTestApp());
-}
-
-class WebsparkTestApp extends StatelessWidget {
-  const WebsparkTestApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp();
-  }
+  bootstrap(() => const App());
 }
