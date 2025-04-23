@@ -20,8 +20,8 @@ class AppRoute {
     return GoRoute(
       name: Routes.mainScreen.name,
       path: '/${Routes.mainScreen.name}',
-      pageBuilder: (context, state) => const CupertinoPage(
-        child:  MainScreen(),
+      pageBuilder: (context, state) => CupertinoPage(
+        child: MainScreen(),
       ),
     );
   }
