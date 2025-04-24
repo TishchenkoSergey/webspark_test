@@ -18,9 +18,9 @@ class GetTaskDataUsecaseImpl implements GetTaskDataUsecase {
 
   @override
   Future<TaskDataModel?> execute() async {
-    final link = await urlStorageRepository.getLastLink();
-    final newLink = getTaskDataRepository.getTaskData(link);
+    final link = urlStorageRepository.getLastLink();
+    final taskData = getTaskDataRepository.getTaskData(link);
 
-    return newLink;
+    return taskData;
   }
 }
