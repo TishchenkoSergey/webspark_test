@@ -18,7 +18,9 @@ class DomainPackageModule extends _i526.MicroPackageModule {
   _i687.FutureOr<void> init(_i526.GetItHelper gh) {
     gh.factory<_i898.UpdateUrlStorageUsecase>(() =>
         _i898.UpdateUrlStorageUsecaseImpl(gh<_i174.UrlStorageRepository>()));
-    gh.factory<_i940.GetTaskDataUsecase>(
-        () => _i940.GetTaskDataUsecaseImpl(gh<_i494.GetTaskDataRepository>()));
+    gh.factory<_i940.GetTaskDataUsecase>(() => _i940.GetTaskDataUsecaseImpl(
+          gh<_i494.GetTaskDataRepository>(),
+          gh<_i494.UrlStorageRepository>(),
+        ));
   }
 }
