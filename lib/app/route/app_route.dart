@@ -22,6 +22,7 @@ class AppRoute {
     return GoRouter(
       routes: [
         _buildMainPage(),
+        _buildProcessPage(),
       ],
       initialLocation: '/${Routes.mainScreen.name}',
     );
@@ -36,6 +37,16 @@ class AppRoute {
           updateUrlStorageUsecase: serviceLocator.get(),
         ),
         child: MainScreen(),
+      ),
+    );
+  }
+
+  GoRoute _buildProcessPage() {
+    return GoRoute(
+      name: Routes.processScreen.name,
+      path: '/${Routes.processScreen.name}',
+      pageBuilder: (BuildContext context, GoRouterState state) => const CupertinoPage(
+        child: ProcessScreen(),
       ),
     );
   }
