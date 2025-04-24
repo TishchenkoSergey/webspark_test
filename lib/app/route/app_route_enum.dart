@@ -1,5 +1,6 @@
 enum Routes {
-  mainScreen('main-screen');
+  mainScreen('main-screen'),
+  processScreen('process-screen');
 
   const Routes(this.name);
 
