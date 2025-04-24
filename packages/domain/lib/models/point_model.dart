@@ -1,5 +1,8 @@
+import 'package:flutter/foundation.dart';
+
+@immutable
 class PointModel {
-  PointModel({
+  const PointModel({
     required this.x,
     required this.y,
   });
@@ -9,5 +12,17 @@ class PointModel {
   final int x;
   final int y;
 
-  Map<String, dynamic> toJson() => {'x': x, 'y': y};
+  Map<String, dynamic> toJson() => {
+    'x': x.toString(),
+    'y': y.toString(),
+  };
+
+  @override
+  String toString() => '($x,$y)';
+
+  @override
+  bool operator ==(Object other) => other is PointModel && other.x == x && other.y == y;
+
+  @override
+  int get hashCode => x.hashCode ^ y.hashCode;
 }
