@@ -8,6 +8,10 @@ sealed class MainState with _$MainState {
 
   const MainState._();
 
+  bool get isAllFieldsValid => Formz.validate([
+    linkInput,
+  ]);
+
   MainState copyWithValidate({
     LinkInput? linkInput,
   }) {

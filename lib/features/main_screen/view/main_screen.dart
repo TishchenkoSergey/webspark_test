@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:webspark_test/features/main_screen/bloc/main_cubit.dart';
 import 'package:webspark_test/widgets/widgets.dart';
+import 'package:webspark_test/app/route/route.dart';
 
 import '../extensions/extensions.dart';
 
@@ -38,24 +39,30 @@ class MainScreen extends StatelessWidget {
                     'Set valid API base URL in order to continue',
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
-                  Row(
-                    children: [
-                      const Icon(Icons.compare_arrows_outlined),
-                      const SizedBox(width: 24),
-                      Expanded(
-                        child: TextFormField(
-                          decoration: InputDecoration(
-                            border: const UnderlineInputBorder(),
-                            errorText: state.linkInput.errorMessage(context),
-                            labelStyle: textTheme.bodyLarge,
-                            hintStyle: textTheme.labelMedium?.copyWith(color: Colors.black.withValues(alpha: 0.65)),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 16),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Icon(Icons.compare_arrows_outlined),
+                        const SizedBox(width: 32),
+                        Expanded(
+                          child: TextFormField(
+                            decoration: InputDecoration(
+                              isDense: true,
+                              contentPadding: const EdgeInsets.symmetric(vertical: 8),
+                              border: const UnderlineInputBorder(),
+                              errorText: state.linkInput.errorMessage(context),
+                              labelStyle: textTheme.bodyLarge,
+                              hintStyle: textTheme.labelMedium?.copyWith(color: Colors.black.withValues(alpha: 0.65)),
+                            ),
+                            onChanged: context.read<MainCubit>().linkChanged,
+                            keyboardType: TextInputType.url,
                           ),
-                          onChanged: context.read<MainCubit>().linkChanged,
-                          keyboardType: TextInputType.url,
                         ),
-                      ),
-                    ],
-                  )
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -68,7 +75,10 @@ class MainScreen extends StatelessWidget {
                 title: 'Start counting process',
                 onPressed: () {
                   context.read<MainCubit>().linkChanged(state.linkInput.value);
-                  context.read<MainCubit>().setNewLink();
+                  if (state.isAllFieldsValid) {
+                    context.read<MainCubit>().setNewLink();
+                    context.pushNamed(Routes.processScreen.name);
+                  }
                 },
               ),
             ),

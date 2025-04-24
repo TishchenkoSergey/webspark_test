@@ -7,8 +7,8 @@ abstract class UpdateUrlStorageUsecase {
 }
 
 @Injectable(as: UpdateUrlStorageUsecase)
-class UpdateGameSettingsUseCase implements UpdateUrlStorageUsecase {
-  UpdateGameSettingsUseCase(
+class UpdateUrlStorageUsecaseImpl implements UpdateUrlStorageUsecase {
+  UpdateUrlStorageUsecaseImpl(
     this.urlStorageRepository,
   );
 
