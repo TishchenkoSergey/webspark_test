@@ -8,6 +8,8 @@ import 'package:get_it/get_it.dart';
 
 import 'package:webspark_test/features/features.dart';
 
+import 'package:domain/domain.dart';
+
 import 'app_route_enum.dart';
 
 class AppRoute {
@@ -22,6 +24,7 @@ class AppRoute {
       routes: [
         _buildMainPage(),
         _buildProcessPage(),
+        _buildResultListPage(),
       ],
       initialLocation: '/${Routes.mainScreen.name}',
     );
@@ -51,6 +54,21 @@ class AppRoute {
         ),
         child: const ProcessScreen(),
       ),
+    );
+  }
+
+  GoRoute _buildResultListPage() {
+    return GoRoute(
+      name: Routes.resultListScreen.name,
+      path: '/${Routes.resultListScreen.name}',
+      builder: (BuildContext context, GoRouterState state) {
+        final shortestPath = state.extra! as List<CalculationDataModel>;
+
+        return BlocProvider(
+          create: (context) => ResultListCubit(shortestPath: shortestPath),
+          child: const ResultListScreen(),
+        );
+      },
     );
   }
 }
