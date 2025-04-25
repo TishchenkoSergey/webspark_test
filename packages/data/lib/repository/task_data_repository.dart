@@ -16,6 +16,7 @@ class TaskDataRepositoryImpl implements TaskDataRepository {
       final response = await Dio().get<Map<String, dynamic>>(link);
       return TaskDataModel.fromJson(response.data!);
     } catch (e) {
+      // TODO(Tishchenko): Add error handler
       _logger.info('Failed to getting request from server', e);
 
       return null;
