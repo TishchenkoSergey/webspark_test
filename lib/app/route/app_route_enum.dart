@@ -1,6 +1,7 @@
 enum Routes {
   mainScreen('main-screen'),
-  processScreen('process-screen');
+  processScreen('process-screen'),
+  resultListScreen('result-list-screen');
 
   const Routes(this.name);
 

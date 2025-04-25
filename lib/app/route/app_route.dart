@@ -22,6 +22,7 @@ class AppRoute {
       routes: [
         _buildMainPage(),
         _buildProcessPage(),
+        _buildResultListPage(),
       ],
       initialLocation: '/${Routes.mainScreen.name}',
     );
@@ -50,6 +51,16 @@ class AppRoute {
           setCalculationDataUsecase: serviceLocator.get(),
         ),
         child: const ProcessScreen(),
+      ),
+    );
+  }
+
+  GoRoute _buildResultListPage() {
+    return GoRoute(
+      name: Routes.resultListScreen.name,
+      path: '/${Routes.resultListScreen.name}',
+      pageBuilder: (context, state) => const CupertinoPage(
+        child: ResultListScreen(),
       ),
     );
   }
