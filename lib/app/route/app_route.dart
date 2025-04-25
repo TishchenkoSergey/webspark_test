@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:get_it/get_it.dart';
+import 'package:webspark_test/features/calculation_result_screen/calculation_result_screen.dart';
 
 import 'package:webspark_test/features/features.dart';
 
@@ -25,6 +26,7 @@ class AppRoute {
         _buildMainPage(),
         _buildProcessPage(),
         _buildResultListPage(),
+        _buildCalculationResultPage(),
       ],
       initialLocation: '/${Routes.mainScreen.name}',
     );
@@ -67,6 +69,24 @@ class AppRoute {
         return BlocProvider(
           create: (context) => ResultListCubit(shortestPath: shortestPath),
           child: const ResultListScreen(),
+        );
+      },
+    );
+  }
+
+  GoRoute _buildCalculationResultPage() {
+    return GoRoute(
+      name: Routes.calculationResultScreen.name,
+      path: '/${Routes.calculationResultScreen.name}',
+      builder: (BuildContext context, GoRouterState state) {
+        final shortestPath = state.extra! as CalculationDataModel;
+
+        return BlocProvider(
+          create: (context) => CalculationResultCubit(
+            shortestPath: shortestPath,
+            getSavedTaskDataUsecase: serviceLocator.get(),
+          ),
+          child: const CalculationResultScreen(),
         );
       },
     );

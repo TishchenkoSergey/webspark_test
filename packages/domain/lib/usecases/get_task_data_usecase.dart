@@ -11,15 +11,18 @@ class GetTaskDataUsecaseImpl implements GetTaskDataUsecase {
   GetTaskDataUsecaseImpl(
     this.getTaskDataRepository,
     this.urlStorageRepository,
+    this.taskStorageRepository,
   );
 
   final GetTaskDataRepository getTaskDataRepository;
   final UrlStorageRepository urlStorageRepository;
+  final TaskStorageRepository taskStorageRepository;
 
   @override
   Future<TaskDataModel?> execute() async {
     final link = urlStorageRepository.getLastLink();
-    final taskData = getTaskDataRepository.getTaskData(link);
+    final taskData = await getTaskDataRepository.getTaskData(link);
+    taskStorageRepository.taskData = taskData;
 
     return taskData;
   }

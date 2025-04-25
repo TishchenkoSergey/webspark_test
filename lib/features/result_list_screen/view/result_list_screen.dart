@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:webspark_test/app/route/route.dart';
 import 'package:webspark_test/features/features.dart';
 
 class ResultListScreen extends StatelessWidget {
@@ -17,7 +20,10 @@ class ResultListScreen extends StatelessWidget {
             itemCount: state.shortestPath!.length,
             itemBuilder: (context, index) {
               return TextButton(
-                onPressed: () {},
+                onPressed: () => context.pushNamed(
+                  Routes.calculationResultScreen.name,
+                  extra: state.shortestPath![index],
+                ),
                 child: Text(state.shortestPath![index].result.path),
               );
             },
