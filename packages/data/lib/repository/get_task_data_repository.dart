@@ -12,8 +12,8 @@ class GetTaskDataRepositoryImpl implements GetTaskDataRepository {
   @override
   Future<TaskDataModel?> getTaskData(String link) async {
     try {
-      final response = await Dio().get(link);
-      return TaskDataModel.fromJson(response.data as Map<String, dynamic>);
+      final response = await Dio().get<Map<String, dynamic>>(link);
+      return TaskDataModel.fromJson(response.data!);
     } catch (e) {
       debugPrint('Something went wrong: $e');
 

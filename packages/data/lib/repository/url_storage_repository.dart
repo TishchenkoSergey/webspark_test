@@ -12,8 +12,8 @@ class UrlStorageRepositoryImpl implements UrlStorageRepository {
   static const _lastLinkKey = 'lastLinkKey';
 
   @override
-  Future<String> getLastLink() {
-    return Future.value(_lastLinkKey);
+  String getLastLink()  {
+    return sharedPreferences.getString(_lastLinkKey) ?? 'https://flutter.webspark.dev/flutter/api';
   }
 
   @override

@@ -3,21 +3,24 @@ import 'package:injectable/injectable.dart';
 import 'package:domain/domain.dart';
 
 abstract class GetTaskDataUsecase {
-  Future<TaskDataModel?> execute(String link);
+  Future<TaskDataModel?> execute();
 }
 
 @Injectable(as: GetTaskDataUsecase)
 class GetTaskDataUsecaseImpl implements GetTaskDataUsecase {
   GetTaskDataUsecaseImpl(
     this.getTaskDataRepository,
+    this.urlStorageRepository,
   );
 
   final GetTaskDataRepository getTaskDataRepository;
+  final UrlStorageRepository urlStorageRepository;
 
   @override
-  Future<TaskDataModel?> execute(String link) async {
-    final newLink = getTaskDataRepository.getTaskData(link);
+  Future<TaskDataModel?> execute() async {
+    final link = urlStorageRepository.getLastLink();
+    final taskData = getTaskDataRepository.getTaskData(link);
 
-    return newLink;
+    return taskData;
   }
 }
