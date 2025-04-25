@@ -84,6 +84,28 @@ class ProcessScreen extends StatelessWidget {
         Routes.resultListScreen.name,
         extra: state.shortestPath,
       );
+    } else if (state.status == ProcessStateStatus.failure) {
+      showDialog<void>(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text(
+              'The calculation ended with an error. Please try again later.',
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+            content: Text(
+              state.error.toString(),
+              style: Theme.of(context).textTheme.titleSmall,
+            ),
+            actions: [
+              TextButton(
+                onPressed: context.pop,
+                child: const Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
     }
   }
 }

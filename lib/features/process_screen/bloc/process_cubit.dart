@@ -36,13 +36,13 @@ class ProcessCubit extends Cubit<ProcessState> {
     try {
       final response = await setCalculationDataUsecase.execute(state.shortestPath!);
       if (response == null) {
-        throw Exception('Something went wrong');
+        throw Exception('No response from the server');
       } else if (response.error == true) {
         throw Exception(response.message);
       } else {
         emit(state.copyWith(status: ProcessStateStatus.success));
       }
-    } catch (e) {
+    } on Exception catch (e) {
       emit(state.copyWith(
         error: e,
         status: ProcessStateStatus.failure,
