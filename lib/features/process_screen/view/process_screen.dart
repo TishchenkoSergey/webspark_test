@@ -80,7 +80,7 @@ class ProcessScreen extends StatelessWidget {
 
   void _blocListener(BuildContext context, ProcessState state) {
     if (state.status == ProcessStateStatus.success) {
-      context.pushNamed(Routes.mainScreen.name);
+      context.pushNamed(Routes.resultListScreen.name);
     }
   }
 }
