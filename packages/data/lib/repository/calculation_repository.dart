@@ -1,10 +1,11 @@
 import 'package:injectable/injectable.dart';
 
-import 'package:flutter/cupertino.dart';
-
+import 'package:logging/logging.dart';
 import 'package:dio/dio.dart';
 
 import 'package:domain/domain.dart';
+
+final _logger = Logger('CalculationRepository');
 
 @Injectable(as: CalculationRepository)
 class CalculationRepositoryImpl implements CalculationRepository {
@@ -27,7 +28,7 @@ class CalculationRepositoryImpl implements CalculationRepository {
         throw Exception('Empty response from server');
       }
     } catch (e) {
-      debugPrint('Something went wrong: $e');
+      _logger.info('Failed to send request to server', e);
 
       return null;
     }
