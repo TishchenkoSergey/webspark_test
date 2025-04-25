@@ -16,6 +16,8 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ProcessState {
   ProcessStateStatus get status;
+  List<CalculationDataModel>? get shortestPath;
+  Object? get error;
 
   /// Create a copy of ProcessState
   /// with the given fields replaced by the non-null parameter values.
@@ -30,15 +32,22 @@ mixin _$ProcessState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is ProcessState &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.status, status) || other.status == status) &&
+            const DeepCollectionEquality()
+                .equals(other.shortestPath, shortestPath) &&
+            const DeepCollectionEquality().equals(other.error, error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status);
+  int get hashCode => Object.hash(
+      runtimeType,
+      status,
+      const DeepCollectionEquality().hash(shortestPath),
+      const DeepCollectionEquality().hash(error));
 
   @override
   String toString() {
-    return 'ProcessState(status: $status)';
+    return 'ProcessState(status: $status, shortestPath: $shortestPath, error: $error)';
   }
 }
 
@@ -48,7 +57,10 @@ abstract mixin class $ProcessStateCopyWith<$Res> {
           ProcessState value, $Res Function(ProcessState) _then) =
       _$ProcessStateCopyWithImpl;
   @useResult
-  $Res call({ProcessStateStatus status});
+  $Res call(
+      {ProcessStateStatus status,
+      List<CalculationDataModel>? shortestPath,
+      Object? error});
 }
 
 /// @nodoc
@@ -64,12 +76,19 @@ class _$ProcessStateCopyWithImpl<$Res> implements $ProcessStateCopyWith<$Res> {
   @override
   $Res call({
     Object? status = null,
+    Object? shortestPath = freezed,
+    Object? error = freezed,
   }) {
     return _then(_self.copyWith(
       status: null == status
           ? _self.status
           : status // ignore: cast_nullable_to_non_nullable
               as ProcessStateStatus,
+      shortestPath: freezed == shortestPath
+          ? _self.shortestPath
+          : shortestPath // ignore: cast_nullable_to_non_nullable
+              as List<CalculationDataModel>?,
+      error: freezed == error ? _self.error : error,
     ));
   }
 }
@@ -77,11 +96,28 @@ class _$ProcessStateCopyWithImpl<$Res> implements $ProcessStateCopyWith<$Res> {
 /// @nodoc
 
 class _ProcessState extends ProcessState {
-  const _ProcessState({this.status = ProcessStateStatus.initial}) : super._();
+  const _ProcessState(
+      {this.status = ProcessStateStatus.initial,
+      final List<CalculationDataModel>? shortestPath,
+      this.error})
+      : _shortestPath = shortestPath,
+        super._();
 
   @override
   @JsonKey()
   final ProcessStateStatus status;
+  final List<CalculationDataModel>? _shortestPath;
+  @override
+  List<CalculationDataModel>? get shortestPath {
+    final value = _shortestPath;
+    if (value == null) return null;
+    if (_shortestPath is EqualUnmodifiableListView) return _shortestPath;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  final Object? error;
 
   /// Create a copy of ProcessState
   /// with the given fields replaced by the non-null parameter values.
@@ -96,15 +132,22 @@ class _ProcessState extends ProcessState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _ProcessState &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.status, status) || other.status == status) &&
+            const DeepCollectionEquality()
+                .equals(other._shortestPath, _shortestPath) &&
+            const DeepCollectionEquality().equals(other.error, error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status);
+  int get hashCode => Object.hash(
+      runtimeType,
+      status,
+      const DeepCollectionEquality().hash(_shortestPath),
+      const DeepCollectionEquality().hash(error));
 
   @override
   String toString() {
-    return 'ProcessState(status: $status)';
+    return 'ProcessState(status: $status, shortestPath: $shortestPath, error: $error)';
   }
 }
 
@@ -116,7 +159,10 @@ abstract mixin class _$ProcessStateCopyWith<$Res>
       __$ProcessStateCopyWithImpl;
   @override
   @useResult
-  $Res call({ProcessStateStatus status});
+  $Res call(
+      {ProcessStateStatus status,
+      List<CalculationDataModel>? shortestPath,
+      Object? error});
 }
 
 /// @nodoc
@@ -133,12 +179,19 @@ class __$ProcessStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   $Res call({
     Object? status = null,
+    Object? shortestPath = freezed,
+    Object? error = freezed,
   }) {
     return _then(_ProcessState(
       status: null == status
           ? _self.status
           : status // ignore: cast_nullable_to_non_nullable
               as ProcessStateStatus,
+      shortestPath: freezed == shortestPath
+          ? _self._shortestPath
+          : shortestPath // ignore: cast_nullable_to_non_nullable
+              as List<CalculationDataModel>?,
+      error: freezed == error ? _self.error : error,
     ));
   }
 }

@@ -2,7 +2,7 @@ part of 'process_cubit.dart';
 
 enum ProcessStateStatus {
   initial,
-  counting,
+  counted,
   sendingCalculations,
   success,
   failure;
@@ -14,7 +14,11 @@ enum ProcessStateStatus {
 sealed class ProcessState with _$ProcessState {
   const factory ProcessState({
     @Default(ProcessStateStatus.initial) ProcessStateStatus status,
+    List<CalculationDataModel>? shortestPath,
+    Object? error,
   }) = _ProcessState;
 
   const ProcessState._();
+
+  bool get isError => error != null;
 }
