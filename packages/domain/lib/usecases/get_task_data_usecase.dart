@@ -14,7 +14,7 @@ class GetTaskDataUsecaseImpl implements GetTaskDataUsecase {
     this.taskStorageRepository,
   );
 
-  final GetTaskDataRepository getTaskDataRepository;
+  final TaskDataRepository getTaskDataRepository;
   final UrlStorageRepository urlStorageRepository;
   final TaskStorageRepository taskStorageRepository;
 

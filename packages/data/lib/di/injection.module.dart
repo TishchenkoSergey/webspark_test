@@ -8,7 +8,7 @@ import 'dart:async' as _i687;
 
 import 'package:data/di/injection.dart' as _i237;
 import 'package:data/repository/calculation_repository.dart' as _i993;
-import 'package:data/repository/get_task_data_repository.dart' as _i657;
+import 'package:data/repository/task_data_repository.dart' as _i657;
 import 'package:data/repository/task_storage_repository.dart' as _i847;
 import 'package:data/repository/url_storage_repository.dart' as _i899;
 import 'package:domain/domain.dart' as _i494;
@@ -26,8 +26,8 @@ class DataPackageModule extends _i526.MicroPackageModule {
     );
     gh.factory<_i494.CalculationRepository>(
         () => _i993.CalculationRepositoryImpl());
-    gh.factory<_i494.GetTaskDataRepository>(
-        () => const _i657.GetTaskDataRepositoryImpl());
+    gh.factory<_i494.TaskDataRepository>(
+        () => const _i657.TaskDataRepositoryImpl());
     gh.lazySingleton<_i494.TaskStorageRepository>(
         () => _i847.TaskDataStorageRepositoryImpl());
     gh.factory<_i494.UrlStorageRepository>(

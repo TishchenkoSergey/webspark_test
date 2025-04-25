@@ -1,5 +1,5 @@
 import 'package:domain/models/models.dart';
 
-abstract class GetTaskDataRepository {
+abstract class TaskDataRepository {
   Future<TaskDataModel?> getTaskData(String link);
 }

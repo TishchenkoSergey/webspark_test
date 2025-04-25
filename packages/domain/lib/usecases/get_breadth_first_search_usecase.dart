@@ -4,13 +4,13 @@ import 'package:injectable/injectable.dart';
 
 import 'package:domain/domain.dart';
 
-abstract class BreadthFirstSearchUsecase {
+abstract class GetBreadthFirstSearchUsecase {
   List<PointModel> execute(CountingDataModel task);
 }
 
-@Injectable(as: BreadthFirstSearchUsecase)
-class BreadthFirstSearchUsecaseImpl implements BreadthFirstSearchUsecase {
-  BreadthFirstSearchUsecaseImpl();
+@Injectable(as: GetBreadthFirstSearchUsecase)
+class GetBreadthFirstSearchUsecaseImpl implements GetBreadthFirstSearchUsecase {
+  GetBreadthFirstSearchUsecaseImpl();
 
   @override
   List<PointModel> execute(CountingDataModel task) {

@@ -5,9 +5,9 @@ import 'package:injectable/injectable.dart';
 
 import 'package:domain/domain.dart';
 
-@Injectable(as: GetTaskDataRepository)
-class GetTaskDataRepositoryImpl implements GetTaskDataRepository {
-  const GetTaskDataRepositoryImpl();
+@Injectable(as: TaskDataRepository)
+class TaskDataRepositoryImpl implements TaskDataRepository {
+  const TaskDataRepositoryImpl();
 
   @override
   Future<TaskDataModel?> getTaskData(String link) async {

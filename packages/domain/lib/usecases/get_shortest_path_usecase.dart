@@ -14,7 +14,7 @@ class GetShortestPathImpl implements GetShortestPath {
   );
 
   final GetTaskDataUsecase getTaskDataUsecase;
-  final BreadthFirstSearchUsecase breadthFirstSearch;
+  final GetBreadthFirstSearchUsecase breadthFirstSearch;
 
   @override
   Future<List<CalculationDataModel>> execute() async {
