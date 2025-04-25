@@ -28,22 +28,16 @@ class BreadthFirstSearchUsecaseImpl implements BreadthFirstSearchUsecase {
       }
 
       for (final dir in kDirections) {
-        var nx = current.x;
-        var ny = current.y;
+        final nx = current.x + dir[0];
+        final ny = current.y + dir[1];
 
-        while (true) {
-          nx += dir[0];
-          ny += dir[1];
+        if (nx < 0 || ny < 0 || nx >= matrix.length || ny >= matrix[0].length) continue;
+        if (matrix[nx][ny] == 'X') continue;
 
-          if (nx < 0 || ny < 0 || nx >= matrix.length || ny >= matrix[0].length) break;
-          if (matrix[nx][ny] == 'X') break;
-
-          final next = PointModel(x: nx, y: ny);
-          if (visited.contains(next)) continue;
-
+        final next = PointModel(x: nx, y: ny);
+        if (!visited.contains(next)) {
           visited.add(next);
           queue.add([...path, next]);
-          break;
         }
       }
     }
