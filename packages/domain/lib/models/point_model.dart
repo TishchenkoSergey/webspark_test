@@ -13,8 +13,8 @@ class PointModel {
   final int y;
 
   Map<String, dynamic> toJson() => {
-    'x': x.toString(),
-    'y': y.toString(),
+    'x': x,
+    'y': y,
   };
 
   @override
