@@ -10,6 +10,7 @@ class CustomLoader extends StatelessWidget {
     const size = 200.0;
 
     return TweenAnimationBuilder(
+      // ignore_for_file: prefer_int_literals
       tween: Tween(begin: 0.0, end: 1.0),
       duration: const Duration(seconds: 4),
       builder: (context, value, child) {
