@@ -28,6 +28,7 @@ class CalculationRepositoryImpl implements CalculationRepository {
         throw Exception('Empty response from server');
       }
     } catch (e) {
+      // TODO(Tishchenko): Add error handler
       _logger.info('Failed to send request to server', e);
 
       return null;
