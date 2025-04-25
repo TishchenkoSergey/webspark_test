@@ -7,7 +7,7 @@ class CustomLoader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const size = 200.0;
+    const _size = 200.0;
 
     return TweenAnimationBuilder(
       // ignore_for_file: prefer_int_literals
@@ -16,8 +16,8 @@ class CustomLoader extends StatelessWidget {
       builder: (context, value, child) {
         final percentage = (value * 100).ceil();
         return SizedBox(
-          width: size,
-          height: size,
+          width: _size,
+          height: _size,
           child: Stack(
             children: [
               ShaderMask(
@@ -29,15 +29,15 @@ class CustomLoader extends StatelessWidget {
                       colors: [Colors.blue, Colors.grey.withAlpha(55)]).createShader(rect);
                 },
                 child: Container(
-                  width: size,
-                  height: size,
+                  width: _size,
+                  height: _size,
                   decoration: const BoxDecoration(shape: BoxShape.circle, color: Colors.white),
                 ),
               ),
               Center(
                 child: Container(
-                  width: size - 40,
-                  height: size - 40,
+                  width: _size - 40,
+                  height: _size - 40,
                   decoration: const BoxDecoration(color: Colors.white, shape: BoxShape.circle),
                   child: Center(
                     child: Text(
